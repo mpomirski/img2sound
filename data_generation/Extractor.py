@@ -95,7 +95,7 @@ class Extractor:
             print(e)
             self.cleanup()
 
-    def _extract_frame_given_time(self, time: int, video_path: str, output_name: str | None = None) -> None:
+    def _extract_frame_given_time(self, time: float, video_path: str, output_name: str | None = None) -> None:
         '''
         Extracts a frame from a video at the given time and saves it in the output directory.
         Parameters:
@@ -116,7 +116,7 @@ class Extractor:
                     f'MoviePy - Writing frame in {self.output_path}/{output_name}.png')
         clip.close()
 
-    def extract_frame_given_time(self, time: int, video_path: str, output_name: str | None = None) -> None:
+    def extract_frame_given_time(self, time: float, video_path: str, output_name: str | None = None) -> None:
         '''
         Extracts a frame from a video at the given time and saves it in the output directory.
         Parameters:
@@ -129,7 +129,7 @@ class Extractor:
             print(e)
             self.cleanup()
 
-    def _extract_sound_given_time(self, time: int, video_path: str, output_name: str | None = None) -> None:
+    def _extract_sound_given_time(self, time: float, video_path: str, output_name: str | None = None) -> None:
         '''
         Extracts a 10-second audio clip from a video at the given time and saves it in the output directory.
         Parameters:
@@ -153,7 +153,7 @@ class Extractor:
                     f'MoviePy - Writing sound in {self.output_path}/{output_name}.wav')
         clip.close()
 
-    def extract_sound_given_time(self, time: int, video_path: str, output_name: str | None = None) -> None:
+    def extract_sound_given_time(self, time: float, video_path: str, output_name: str | None = None) -> None:
         '''
         Extracts a 10-second audio clip from a video at the given time and saves it in the output directory.
         Parameters:
@@ -188,7 +188,7 @@ class Extractor:
             print(e)
             self.cleanup()
 
-    def extract_all_given_time(self, time: int, video_path: str, output_name: str | None = None) -> None:
+    def extract_all_given_time(self, time: float, video_path: str, output_name: str | None = None) -> None:
         '''
         Extracts frames and sounds from all videos in the specified directory and saves them in the output directory.
         If an exception occurs during extraction, it prints the error message and performs cleanup.
@@ -232,9 +232,9 @@ class Extractor:
 def main() -> None:
     extractor: Extractor = Extractor(
         'videos', 'data', verbose=True, duration=5)
-    extractor.extract_all()
-    # extractor.cleanup()
-    # extractor.remove_originals()
+    # extractor.extract_all()
+    extractor.cleanup()
+    extractor.remove_originals()
 
 
 if __name__ == '__main__':

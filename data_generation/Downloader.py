@@ -3,19 +3,19 @@ import os
 from multiprocessing import Pool
 
 
-def download(url: str, output_path: str) -> None:
+def download(url: str, output_path: str, output_filename: str | None = None) -> None:
     '''
     Downloads a video from the specified URL and saves it in the specified output directory.
     '''
-    yt: YouTube = YouTube(url)
-    stream: Stream | None = yt.streams.get_by_resolution('360p')
     try:
+        yt: YouTube = YouTube(url)
+        stream: Stream | None = yt.streams.get_by_resolution('360p')
         if stream is not None:
-            stream.download(output_path)
+            stream.download(output_path, filename=output_filename)
             print(f'Downloaded video: {url}')
         else:
             raise Exception(f'No stream found for video: {url}')
-    except Exception as e:
+    except (Exception) as e:
         print(e)
 
 
@@ -46,8 +46,9 @@ def download_many_async(urls: list[str], output_path: str) -> None:
     '''
     Downloads multiple videos from the specified URLs asynchronously and saves them in the specified output directory.
     '''
-    with Pool(4) as pool:
-        pool.starmap(download, [(url, output_path) for url in urls])
+    with Pool(len(urls)) as pool:
+        pool.starmap(download, [(url, output_path, str(i)+'.mp4')
+                     for i, url in enumerate(urls)])
 
 
 def main() -> None:
