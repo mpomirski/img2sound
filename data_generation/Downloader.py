@@ -1,22 +1,20 @@
 from pytube import YouTube, Stream
 import os
-from multiprocessing import Pool
+from multiprocessing.pool import ThreadPool as Pool
 
 
 def download(url: str, output_path: str, output_filename: str | None = None) -> None:
     '''
     Downloads a video from the specified URL and saves it in the specified output directory.
     '''
-    try:
-        yt: YouTube = YouTube(url)
-        stream: Stream | None = yt.streams.get_by_resolution('360p')
-        if stream is not None:
-            stream.download(output_path, filename=output_filename)
-            print(f'Downloaded video: {url}')
-        else:
-            raise Exception(f'No stream found for video: {url}')
-    except (Exception) as e:
-        print(e)
+
+    yt: YouTube = YouTube(url)
+    stream: Stream | None = yt.streams.get_by_resolution('360p')
+    if stream is not None:
+        stream.download(output_path, filename=output_filename)
+        print(f'Downloaded video: {url}')
+    else:
+        raise Exception(f'No stream found for video: {url}')
 
 
 def download_many(urls: list[str], output_path: str) -> None:

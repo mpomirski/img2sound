@@ -234,7 +234,7 @@ def main() -> None:
         'videos', 'data', verbose=True, duration=5)
     # extractor.extract_all()
     extractor.cleanup()
-    extractor.remove_originals()
+    # extractor.remove_originals()
 
 
 if __name__ == '__main__':
