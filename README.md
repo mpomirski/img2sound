@@ -3,6 +3,6 @@
 Creating sounds based on images
 
 Inspirations:  
-- [Paper 1](https://arxiv.org/abs/2301.12503)
-- [Paper 2](https://openai.com/research/clip)
-- [Paper 3](https://arxiv.org/abs/1809.10636)
+- [AudioLDM: Text-to-Audio Generation with Latent Diffusion Models](https://arxiv.org/abs/2301.12503)
+- [CLIP](https://openai.com/research/clip)
+- [Conditional WaveGAN](https://arxiv.org/abs/1809.10636)
